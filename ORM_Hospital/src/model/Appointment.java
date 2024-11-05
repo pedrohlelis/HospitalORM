@@ -9,6 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 
 @Entity
 public class Appointment {
@@ -27,13 +33,16 @@ public class Appointment {
 	@JoinColumn(name="patient_id")
 	private Patient patient;
 	
+	@Transient
+	private DateFormat dateFormatter =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
 	public Appointment() {
 		
 	}
 	
-	public Appointment(Date dataLocacao, Doctor livro, Patient cliente) {
-		this.appointmentDate = dataLocacao;
-		this.doctor = livro;
+	public Appointment(String dataLocacao, Doctor doctor, Patient cliente) throws ParseException {
+		this.appointmentDate = dateFormatter.parse(dataLocacao);
+		this.doctor = doctor;
 		this.patient = cliente;
 	}
 
@@ -61,12 +70,16 @@ public class Appointment {
 		this.doctor = livro;
 	}
 	
-	public Patient getCliente() {
+	public Patient getPatient() {
 		return patient;
 	}
 	
-	public void setCliente(Patient cliente) {
-		this.patient = cliente;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+	
+	public DateFormat getDateFormatter() {
+		return dateFormatter;
 	}
 	
 }

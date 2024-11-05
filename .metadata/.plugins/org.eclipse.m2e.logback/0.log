@@ -27,3 +27,4 @@ java.nio.file.FileAlreadyExistsException: C:\Users\Pedro\AppData\Local\Temp\mave
 	at org.eclipse.m2e.editor.pom.MavenPomEditor$LoadEffectivePomJob.run(MavenPomEditor.java:577)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 2024-11-01 11:44:04,430 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-11-05 13:43:03,676 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.

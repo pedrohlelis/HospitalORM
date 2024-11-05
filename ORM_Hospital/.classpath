@@ -11,8 +11,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/DesignSoftware/ORM_exemplo/ORM_Exemplo_Biblioteca/JARs/eclipselink.jar"/>
-	<classpathentry kind="lib" path="C:/DesignSoftware/ORM_exemplo/ORM_Exemplo_Biblioteca/JARs/jakarta.persistence-api.jar"/>
-	<classpathentry kind="lib" path="C:/DesignSoftware/ORM_exemplo/ORM_Exemplo_Biblioteca/JARs/mysql-connector-java-8.0.26.jar"/>
+	<classpathentry kind="lib" path="C:/HospitalORM/HospitalORM/ORM_Hospital/JARs/eclipselink.jar"/>
+	<classpathentry kind="lib" path="C:/HospitalORM/HospitalORM/ORM_Hospital/JARs/jakarta.persistence-api.jar"/>
+	<classpathentry kind="lib" path="C:/HospitalORM/HospitalORM/ORM_Hospital/JARs/mysql-connector-java-8.0.26.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

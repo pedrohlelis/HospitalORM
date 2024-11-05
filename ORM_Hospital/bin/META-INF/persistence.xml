@@ -6,16 +6,16 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         
         
-        <class>model.Editora</class>
-        <class>model.Cliente</class>
-        <class>model.Livro</class>
-        <class>model.Locacao</class>
+        <class>model.Doctor</class>
+        <class>model.Patient</class>
+        <class>model.MedicalReport</class>
+        <class>model.Appointment</class>
         
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost/hospital"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value=""/>
+            <property name="jakarta.persistence.jdbc.password" value="PUC@1234"/>
 
 	        <property name="eclipselink.logging.level" value="FINE" /> 
 			<property name="eclipselink.ddl-generation" value="create-tables" />
