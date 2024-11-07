@@ -15,15 +15,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Doctor extends Person{
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	private String nome;
-	private String email;
-	private String cpf;
-	private String fone;
 	private String especializacao;
-	
 	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
 	private List<Appointment> appointments;
 	
@@ -49,44 +41,13 @@ public class Doctor extends Person{
     public void removeAppointment(Appointment appointment) {
         appointments.remove(appointment);
     }
-    
-	public Long getId() {
-		return id;
+	
+	public String getEspecializacao() {
+		return especializacao;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setEspecializacao(String especializacao) {
+		this.especializacao = especializacao;
 	}
 	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public String getCpf() {
-		return cpf;
-	}
-	
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
-	public String getFone() {
-		return fone;
-	}
-	
-	public void setFone(String fone) {
-		this.fone = fone;
-	}
 }

@@ -36,5 +36,6 @@ public class Patient extends Person{
     
     public void removeAppointment(Appointment appointment) {
         appointments.remove(appointment);
+        appointment.setPatient(null);
     }
 }
