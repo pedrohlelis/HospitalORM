@@ -10,75 +10,99 @@ import model.Doctor;
 
 public class DoctorRepository {
     private EntityManagerFactory emf;
-    private EntityManager em;
 
     public DoctorRepository() {
         this.emf = Persistence.createEntityManagerFactory("hospitalPU");
-        this.em = emf.createEntityManager();
     }
 
-
-    public boolean saveDoctor(Doctor patient) {
-    	try {
-    		em.getTransaction().begin();
-            em.persist(patient);
+    // Save a doctor
+    public boolean saveDoctor(Doctor doctor) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(doctor);
             em.getTransaction().commit();
             return true;
-    	}
-        catch(Exception e) {
-        	return false;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
         }
     }
 
-
-    public List<Doctor> getAllPatients() {
+    // Get all doctors
+    public List<Doctor> getAllDoctors() {
+        EntityManager em = emf.createEntityManager();
         List<Doctor> doctors = em.createQuery("SELECT d FROM Doctor d", Doctor.class).getResultList();
+        em.close();
         return doctors;
     }
 
-
-    public Doctor getPatientById(Long id) {
+    // Get a doctor by ID
+    public Doctor getDoctorById(Long id) {
+        EntityManager em = emf.createEntityManager();
         Doctor doctor = em.find(Doctor.class, id);
+        em.close();
         return doctor;
     }
 
 
     public boolean updateDoctor(Long id, Doctor updatedDoctor) {
-    	try {
-	        em.getTransaction().begin();
-	        Doctor existingDoctor = em.find(Doctor.class, id);
-	        if (existingDoctor != null) {
-	            // Update properties
-	            existingDoctor.setName(updatedDoctor.getName());
-	            existingDoctor.setEspecializacao(updatedDoctor.getEspecializacao());
-	            existingDoctor.setEmail(updatedDoctor.getEmail());
-	            existingDoctor.setCpf(updatedDoctor.getCpf());
-	            existingDoctor.setPhone(updatedDoctor.getPhone());
-	            em.merge(existingDoctor);
-	        }
-	        em.getTransaction().commit();
-	        return true;
-    	}catch(Exception e) {
-    		return false;
-    	}
-    }
-
-
-    public void deletePatient(Long id) {
-        em.getTransaction().begin();
-        Doctor doctor = em.find(Doctor.class, id);
-        if (doctor != null) {
-            em.remove(doctor);
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Doctor existingDoctor = em.find(Doctor.class, id);
+            if (existingDoctor != null) {
+                existingDoctor.setName(updatedDoctor.getName());
+                existingDoctor.setEspecializacao(updatedDoctor.getEspecializacao());
+                existingDoctor.setEmail(updatedDoctor.getEmail());
+                existingDoctor.setCpf(updatedDoctor.getCpf());
+                existingDoctor.setPhone(updatedDoctor.getPhone());
+                em.merge(existingDoctor);
+            }
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
         }
-        em.getTransaction().commit();
     }
-    
+
+    // Delete a doctor by ID
+    public void deleteDoctor(Long id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Doctor doctor = em.find(Doctor.class, id);
+            if (doctor != null) {
+                em.remove(doctor);
+            }
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    // Delete all doctors
+    public void deleteAllDoctors() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createQuery("DELETE FROM Doctor").executeUpdate();
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    // Close the EntityManagerFactory when done with the repository
     public void close() {
-    	em.close();
-    }
-    
-    public void open() {
-    	em = emf.createEntityManager();
+        if (emf != null && emf.isOpen()) {
+            emf.close();
+        }
     }
 }
 

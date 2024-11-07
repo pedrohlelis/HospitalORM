@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import model.Appointment;
 import model.Doctor;
 import services.DoctorsManager;
 
@@ -19,14 +20,16 @@ class DoctorTests {
 	
 	@Test
 	void editDoctorTest() {
-		Doctor doctor = new Doctor("Andre Augusto", "dr_andre@gmail.com", "092808294399", "098390218309", "ginecologista");
+		Doctor doctor = new Doctor("Andre Augustos", "dr_andre@gmail.com", "092808294399", "098390218309", "ginecologista");
 		
 		dm.saveDoctor(doctor);
 		
 		doctor.setEspecializacao("cardiologista");
 		
 		boolean success = dm.updateDoctor(doctor.getId(), doctor);
-		assertEquals("cardiologista", doctor.getEspecializacao());
+		
+		Doctor retrievedDoctor = dm.getDoctorById(doctor.getId());
+		assertEquals("cardiologista", retrievedDoctor.getEspecializacao());
 	}
 
 }

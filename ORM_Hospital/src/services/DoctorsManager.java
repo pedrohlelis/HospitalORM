@@ -29,6 +29,10 @@ public class DoctorsManager {
 		return instance;
 	}
 	
+	public Doctor getDoctorById(Long id) {
+		return doctorRepository.getDoctorById(id);
+	}
+	
 	public boolean saveDoctor(Doctor doctor) {
         if(doctorRepository.saveDoctor(doctor)) {
         	return true;
@@ -43,12 +47,12 @@ public class DoctorsManager {
         return false;
     }
 	
-    public void openConnection() {
-        doctorRepository.open();
-    }
-	
     public void closeConnection() {
         doctorRepository.close();
     }
+
+	public void deleteAllDoctors() {
+		doctorRepository.deleteAllDoctors();
+	}
 
 }

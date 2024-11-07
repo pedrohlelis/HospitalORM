@@ -35,8 +35,9 @@ public class PatientsManager {
         patientRepository.close();
     }
     
-    public void openConnection() {
-        patientRepository.open();
-    }
+
+	public void deleteAllPatients() {
+		patientRepository.deleteAllPatients();
+	}
 
 }

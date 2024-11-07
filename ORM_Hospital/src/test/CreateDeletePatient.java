@@ -10,11 +10,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import Services.PatientService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import model.Patient;
+import services.PatientService;
 
 class CreateDeletePatient {
 	 private static EntityManagerFactory emf;

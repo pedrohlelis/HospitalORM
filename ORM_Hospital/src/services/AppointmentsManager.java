@@ -1,5 +1,6 @@
 package services;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import model.Appointment;
+import model.Doctor;
+import model.Patient;
 import repository.AppointmentRepository;
 
 public class AppointmentsManager {
@@ -24,6 +27,10 @@ public class AppointmentsManager {
 			return instance;
 		}
 		return instance;
+	}
+	
+	public Appointment createAppointment(String date, Doctor doctor, Patient patient) throws ParseException {
+		return appointmentRepository.saveAppointment(date, doctor, patient);
 	}
 	
     public List<Appointment> getAllAppointments() {
@@ -46,7 +53,8 @@ public class AppointmentsManager {
         appointmentRepository.close();
     }
     
-    public void openConnection() {
-        appointmentRepository.open();
-    }
+
+	public void deleteAllAppointments() {
+		appointmentRepository.deleteAllAppointments();
+	}
 }

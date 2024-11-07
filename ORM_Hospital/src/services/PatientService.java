@@ -1,4 +1,4 @@
-package Services;
+package services;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
