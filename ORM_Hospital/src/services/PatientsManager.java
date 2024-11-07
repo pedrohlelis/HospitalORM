@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import model.Appointment;
+import model.Doctor;
 import model.Patient;
 import repository.PatientRepository;
 
@@ -30,6 +31,10 @@ public class PatientsManager {
 	public void savePatient(Patient patient) {
         patientRepository.savePatient(patient);
     }
+	
+	public List<Patient> getAllPatients() {
+		return patientRepository.getAllPatients();
+	}
 	
     public void closeConnection() {
         patientRepository.close();

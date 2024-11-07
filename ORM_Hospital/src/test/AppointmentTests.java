@@ -86,10 +86,10 @@ class AppointmentTests {
 		
         am.createAppointment("2024-11-20 16:00:03", doctor1, patient1);
         
-		Appointment appointment1 = am.createAppointment("2024-11-21 10:00:00", doctor1, patient1);
-        Appointment appointment2 = am.createAppointment("2024-11-22 14:00:00", doctor1, patient2);
-        Appointment appointment3 = am.createAppointment("2024-11-23 16:00:00", doctor2, patient1);
-        Appointment appointment4 = am.createAppointment("2024-11-24 18:00:00", doctor2, patient2);
+		am.createAppointment("2024-11-21 10:00:00", doctor1, patient1);
+        am.createAppointment("2024-11-22 14:00:00", doctor1, patient2);
+        am.createAppointment("2024-11-23 16:00:00", doctor2, patient1);
+        am.createAppointment("2024-11-24 18:00:00", doctor2, patient2);
         
         List<Appointment> appointments = am.getAllAppointments();
         
@@ -98,12 +98,12 @@ class AppointmentTests {
         
 	}
 	
-	@BeforeEach
-	void setUp() {
-	    am = AppointmentsManager.getInstance();
-	    pm = PatientsManager.getInstance();
-	    dm = DoctorsManager.getInstance();
-	}
+//	@BeforeEach
+//	void setUp() {
+//	    am = AppointmentsManager.getInstance();
+//	    pm = PatientsManager.getInstance();
+//	    dm = DoctorsManager.getInstance();
+//	}
 	
 //	@AfterEach
 //	void tearDown() {

@@ -14,7 +14,6 @@ public class PatientRepository {
     	this.emf = Persistence.createEntityManagerFactory("hospitalPU");
     }
 
-    // Save a patient
     public void savePatient(Patient patient) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -23,7 +22,6 @@ public class PatientRepository {
         em.close();
     }
 
-    // Get all patients
     public List<Patient> getAllPatients() {
         EntityManager em = emf.createEntityManager();
         List<Patient> patients = em.createQuery("SELECT p FROM Patient p", Patient.class).getResultList();
@@ -31,7 +29,6 @@ public class PatientRepository {
         return patients;
     }
 
-    // Get a patient by ID
     public Patient getPatientById(Long id) {
         EntityManager em = emf.createEntityManager();
         Patient patient = em.find(Patient.class, id);
@@ -39,7 +36,6 @@ public class PatientRepository {
         return patient;
     }
 
-    // Update a patient
     public void updatePatient(Long id, Patient updatedPatient) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -55,7 +51,6 @@ public class PatientRepository {
         em.close();
     }
 
-    // Delete a patient
     public void deletePatient(Long id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -67,7 +62,6 @@ public class PatientRepository {
         em.close();
     }
 
-    // Delete all patients
     public void deleteAllPatients() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();

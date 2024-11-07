@@ -47,6 +47,14 @@ public class DoctorsManager {
         return false;
     }
 	
+	public void deleteDoctorById(long id) {
+		doctorRepository.deleteDoctor(id);
+	}
+	
+	public List<Doctor> getAllDoctors() {
+		return doctorRepository.getAllDoctors();
+	}
+	
     public void closeConnection() {
         doctorRepository.close();
     }
