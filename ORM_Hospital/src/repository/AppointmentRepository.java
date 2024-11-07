@@ -1,6 +1,8 @@
 package repository;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +16,7 @@ import model.Patient;
 
 public class AppointmentRepository {
 	private EntityManagerFactory emf;
+	private DateFormat dateFormatter =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public AppointmentRepository() {
     	this.emf = Persistence.createEntityManagerFactory("hospitalPU");
@@ -51,9 +54,10 @@ public class AppointmentRepository {
         return appointment;
     }
 
-    public void updateAppointment(Long id, Appointment updatedAppointment) {
-    	EntityManager em = emf.createEntityManager();
+    public void updateAppointment(Long id, Appointment updatedAppointment) throws ParseException {
+        EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        
         Appointment existingAppointment = em.find(Appointment.class, id);
         if (existingAppointment != null) {
             existingAppointment.setAppointmentDate(updatedAppointment.getAppointmentDate());
@@ -61,9 +65,11 @@ public class AppointmentRepository {
             existingAppointment.setPatient(updatedAppointment.getPatient());
             em.merge(existingAppointment);
         }
+        
         em.getTransaction().commit();
         em.close();
     }
+
 
     public void deleteAppointment(Long id) {
     	EntityManager em = emf.createEntityManager();

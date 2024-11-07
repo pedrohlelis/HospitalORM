@@ -54,10 +54,10 @@ public abstract class Person {
 		this.name = value;
 	}
 	public void setEmail(String value) {
-		this.phone = value;
+		this.email = value;
 	}
 	public void setCpf(String value) {
-		this.phone = value;
+		this.cpf = value;
 	}
 	public void setPhone(String value) {
 		this.phone = value;

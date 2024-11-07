@@ -40,8 +40,8 @@ public class Appointment {
 		
 	}
 	
-	public Appointment(String dataLocacao, Doctor doctor, Patient cliente) throws ParseException {
-		this.appointmentDate = dateFormatter.parse(dataLocacao);
+	public Appointment(String appointmentDate, Doctor doctor, Patient cliente) throws ParseException {
+		this.appointmentDate = dateFormatter.parse(appointmentDate);
 		this.doctor = doctor;
 		this.patient = cliente;
 	}
@@ -54,12 +54,12 @@ public class Appointment {
 		this.id = id;
 	}
 	
-	public Date getAppointmentDate() {
-		return appointmentDate;
+	public String getAppointmentDate() {
+		return dateFormatter.format(appointmentDate);
 	}
 	
-	public void setAppointmentDate(Date appointmentDate) {
-		this.appointmentDate = appointmentDate;
+	public void setAppointmentDate(String appointmentDate) throws ParseException {
+		this.appointmentDate = dateFormatter.parse(appointmentDate);
 	}
 	
 	public Doctor getDoctor() {

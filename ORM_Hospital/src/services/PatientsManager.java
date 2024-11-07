@@ -32,6 +32,14 @@ public class PatientsManager {
         patientRepository.savePatient(patient);
     }
 	
+	public Patient getPatientById(long id) {
+		return patientRepository.getPatientById(id);
+	}
+	
+	public void updatePatient(long id, Patient patient) {
+		patientRepository.updatePatient(id, patient);
+	}
+
 	public List<Patient> getAllPatients() {
 		return patientRepository.getAllPatients();
 	}

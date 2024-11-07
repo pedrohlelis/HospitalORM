@@ -98,6 +98,22 @@ class AppointmentTests {
         
 	}
 	
+	@Test
+	void testEdit() throws ParseException {
+	    Patient patient = new Patient("Joao Paciente123", "joaoP@gmail.com", "2323232", "3443-4434");
+	    Doctor doctor = new Doctor("Joao Doutor123", "joaoD@gmail.com", "2323232", "3443-4434", "pediatra");
+	    
+	    pm.savePatient(patient);
+	    dm.saveDoctor(doctor);
+	    Appointment appointment = am.createAppointment("2024-11-20 16:00:03", doctor, patient);
+	    appointment.setAppointmentDate("2024-11-22 16:00:03");
+	    am.updateAppointment(appointment.getId(), appointment);
+	    Appointment retrievedAppointment = am.getAppointmentById(appointment.getId());
+	    
+	    assertEquals("2024-11-22 16:00:03", retrievedAppointment.getAppointmentDate());
+	}
+
+	
 //	@BeforeEach
 //	void setUp() {
 //	    am = AppointmentsManager.getInstance();

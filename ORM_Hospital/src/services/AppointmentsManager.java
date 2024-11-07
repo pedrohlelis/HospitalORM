@@ -41,7 +41,7 @@ public class AppointmentsManager {
         return appointmentRepository.getAppointmentById(id);
     }
 
-    public void updateAppointment(Long id, Appointment updatedAppointment) {
+    public void updateAppointment(Long id, Appointment updatedAppointment) throws ParseException {
         appointmentRepository.updateAppointment(id, updatedAppointment);
     }
 
