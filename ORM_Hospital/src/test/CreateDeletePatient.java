@@ -10,11 +10,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Services.PatientService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import model.Patient;
-import services.PatientService;
 
 class CreateDeletePatient {
 	 private static EntityManagerFactory emf;
@@ -50,7 +50,7 @@ class CreateDeletePatient {
 	    @Test
 	    public void testRegisterPatient() {
 	        
-	        Patient patient = new Patient("John Doe", "john.doe@example.com", "12345678900", "123456789");
+	        Patient patient = new Patient("Jouhn Doe", "john.doe@example.com", "12345678900", "123456789");
 	        
 	        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hospitalPU");
 	        EntityManager em = emf.createEntityManager();
@@ -62,7 +62,7 @@ class CreateDeletePatient {
 	        
 	        Patient savedPatient = em.find(Patient.class, patient.getId());
 	        assertNotNull(savedPatient);
-	        assertEquals("John Doe", savedPatient.getName());
+	        assertEquals("Jouhn Doe", savedPatient.getName());
 	        assertEquals("john.doe@example.com", savedPatient.getEmail());
 	        assertEquals("12345678900", savedPatient.getCpf());
 	        assertEquals("123456789", savedPatient.getPhone());
@@ -70,30 +70,24 @@ class CreateDeletePatient {
 	    
 	   
 	        
+	    	
 	    	@Test
-	    public void testDeletePatient() {
+	    	public void testDeletePatient() {
 	    	    
-	    	  Patient patient = new Patient("Jane Doe", "jane.doe@example.com", "98765432100", "987654321");
-	    	  EntityManagerFactory emf = Persistence.createEntityManagerFactory("hospitalPU");
-		      EntityManager em = emf.createEntityManager();
-		        
-		      PatientService patientService = new PatientService(em);
-		      patientService.registerPatient(patient);
-		        
-	    	  
-	    	  
-	    	    
-	    	  em.getTransaction().begin();
-	    	  em.persist(patient);
-	    	  em.getTransaction().commit();
+	    	    Long existingPatientId = 2L;
+	    	    Patient existingPatient = em.find(Patient.class, existingPatientId);
 
 	    	    
-	    	   patientService.deletePatient(patient);
+	    	    assertNotNull(existingPatient, "O paciente deveria existir no banco de dados antes do teste.");
 
 	    	    
-	    	   Patient deletedPatient = em.find(Patient.class, patient.getId());
-	    	   assertNull(deletedPatient, "O paciente deveria ter sido deletado.");
+	    	    patientService.deletePatient(existingPatient);
+
+	    	    Patient deletedPatient = em.find(Patient.class, existingPatientId);
+	    	    assertNull(deletedPatient, "O paciente deveria ter sido deletado.");
 	    	}
+
+
 
 	}
 
