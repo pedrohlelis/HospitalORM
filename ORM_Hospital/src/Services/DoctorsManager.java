@@ -29,8 +29,18 @@ public class DoctorsManager {
 		return instance;
 	}
 	
-	public void saveDoctor(Doctor doctor) {
-        doctorRepository.saveDoctor(doctor);
+	public boolean saveDoctor(Doctor doctor) {
+        if(doctorRepository.saveDoctor(doctor)) {
+        	return true;
+        }
+        return false;
+    }
+	
+	public boolean updateDoctor(long id, Doctor doctor) {
+        if(doctorRepository.updateDoctor(id, doctor)) {
+        	return true;
+        }
+        return false;
     }
 	
     public void openConnection() {

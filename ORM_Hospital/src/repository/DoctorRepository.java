@@ -18,10 +18,16 @@ public class DoctorRepository {
     }
 
 
-    public void saveDoctor(Doctor patient) {
-        em.getTransaction().begin();
-        em.persist(patient);
-        em.getTransaction().commit();
+    public boolean saveDoctor(Doctor patient) {
+    	try {
+    		em.getTransaction().begin();
+            em.persist(patient);
+            em.getTransaction().commit();
+            return true;
+    	}
+        catch(Exception e) {
+        	return false;
+        }
     }
 
 
@@ -37,19 +43,24 @@ public class DoctorRepository {
     }
 
 
-    public void updatePatient(Long id, Doctor updatedDoctor) {
-        em.getTransaction().begin();
-        Doctor existingDoctor = em.find(Doctor.class, id);
-        if (existingDoctor != null) {
-            // Update properties
-            existingDoctor.setName(updatedDoctor.getName());
-            existingDoctor.setEspecializacao(updatedDoctor.getEspecializacao());
-            existingDoctor.setEmail(updatedDoctor.getEmail());
-            existingDoctor.setCpf(updatedDoctor.getCpf());
-            existingDoctor.setPhone(updatedDoctor.getPhone());
-            em.merge(existingDoctor);
-        }
-        em.getTransaction().commit();
+    public boolean updateDoctor(Long id, Doctor updatedDoctor) {
+    	try {
+	        em.getTransaction().begin();
+	        Doctor existingDoctor = em.find(Doctor.class, id);
+	        if (existingDoctor != null) {
+	            // Update properties
+	            existingDoctor.setName(updatedDoctor.getName());
+	            existingDoctor.setEspecializacao(updatedDoctor.getEspecializacao());
+	            existingDoctor.setEmail(updatedDoctor.getEmail());
+	            existingDoctor.setCpf(updatedDoctor.getCpf());
+	            existingDoctor.setPhone(updatedDoctor.getPhone());
+	            em.merge(existingDoctor);
+	        }
+	        em.getTransaction().commit();
+	        return true;
+    	}catch(Exception e) {
+    		return false;
+    	}
     }
 
 
